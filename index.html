@@ -27,16 +27,19 @@
     var app = angular.module("myModule", [])
         .controller("myController", function ($scope) {
             $scope.carts = [];
-            $scope.products = [
-                { p_id: "1", p_name: "Ekmek", p_price: 2 },
-                { p_id: "2", p_name: "Çikolata", p_price: 5 },
-                { p_id: "3", p_name: "Domates", p_price: 6 },
-            ];
+            $scope.products = ["Ekmek","Çikolata", "Domates"];
 
-            $scope.newCart = function (product) {
-                if (product) {
-                    $scope.carts.push({ p_id: product.p_id, p_name: product.p_name, p_price: product.p_price });
-                }
+            $scope.addEkmek = function () {
+                    $scope.carts.push("Ekmek");
+                
+            }
+            $scope.addCikolata = function () {
+                    $scope.carts.push("Çikolata");
+                
+            }
+            $scope.addDomates = function () {
+                    $scope.carts.push("Domates");
+                
             }
 
 
@@ -83,7 +86,7 @@
                             <li ng-model = "addEkmek">Somun Ekmek</li>
                             <li>200 gr</li>
                         </ul>
-                        <button type="button" ng-click="newCart(Ekmek)" class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
+                        <button type="button" ng-click="addEkmek()" class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
                     </div>
                 </div>
             </div>
@@ -98,7 +101,7 @@
                             <li ng-model = "addCikolata">Bitter Çikolata</li>
                             <li>60 gr</li>
                         </ul>
-                        <button type="button" ng-click="newCart(Cikolata)" class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
+                        <button type="button" ng-click="addCikolata()"  class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
                     </div>
                 </div>
             </div>
@@ -113,7 +116,7 @@
                             <li ng-model = "addDomates">Domates</li>
                             <li>Antalya Sera</li>
                         </ul>
-                        <button type="button" ng-click="newCart(Domates)" class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
+                        <button type="button" ng-click="addDomates()" class="w-100 btn btn-lg btn-primary">Sepete ekle</button>
                     </div>
                 </div>
             </div>
@@ -125,7 +128,8 @@
                 <span class="badge bg-secondary rounded-pill">3</span>
             </h4>
             <ul class="list-group mb-3">
-                <li ng-repeat = "cart in carts" class="list-group-item d-flex justify-content-between lh-sm">
+                <li ng-repeat = "cart in carts" ng-init="setTotals(cart)" class="list-group-item d-flex justify-content-between lh-sm">
+                    {{cart}}
                     <div>
                         <h6 class="my-0">{{cart.p_name}}</h6>
                     </div>
