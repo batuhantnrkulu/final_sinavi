@@ -51,11 +51,10 @@
                 }
             }
 
-            $scope.remove_cart = function (cart) {
-                if (cart) {
-                    $scope.carts.splice($scope.carts.indexOf(cart), 1);
+            $scope.remove_cart = function ($x) {
+                    $scope.carts.splice($x, 1);
                     $scope.total -= cart.p_price;
-                }
+                
             }
         });
 
@@ -130,6 +129,7 @@
             <ul class="list-group mb-3">
                 <li ng-repeat = "cart in carts" ng-init="setTotals(cart)" class="list-group-item d-flex justify-content-between lh-sm">
                     {{cart}}
+                    <span ng-click="remove_cart($index)">x</span>
                     <div>
                         <h6 class="my-0">{{cart.p_name}}</h6>
                     </div>
